@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <link rel="stylesheet" href="tailwind.css">
+    <title>ToDo App using Plumber and HTMX</title>
+</head>
+
+<html>
+  <body>
+    <h1 class="text-4xl text-center text-blue-500 font-bold my-4">ToDo App using Plumber and HTMX (and tailwind)</h1>
+    <div class="mx-auto max-w-2xl bg-gray-100 p-4 rounded-md">
+      <div class="text-right">
+        <form>
+          <input
+            type="text"
+            class="rounded-sm p-2 my-2 border-gray-300 focus:border-gray-300"
+            name="title"
+            placeholder="My new TODO item"/>
+
+          <button
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded min-w-4 min-h-4 text-center"
+            hx-post="/add"
+            hx-target="#todo-list"
+            hx-swap="afterbegin">
+            
+            <svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
+          </button>
+        </form>
+      </div>
+      <ul
+        id="todo-list"
+        class="flex flex-col"
+        hx-get="/list"
+        hx-trigger="load"
+        ></ul>
+    </div>
+  </body>
+</html>

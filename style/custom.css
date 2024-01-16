@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+li.htmx-swapping {
+  opacity: 0;
+  transition: opacity 1s ease-out;
+}
+/* once */
+.todo-item-new {
+  -webkit-animation:new-color 2s;
+  animation: new-color 2s;
+}
+
+@keyframes new-color {
+  0% {background-color: #059669;}
+  100% {background-color: rgb(229 231 235);}
+}
+@-webkit-keyframes new-color {
+  0% {background-color: #059669;}
+  100% {background-color: rgb(229 231 235);}
+}

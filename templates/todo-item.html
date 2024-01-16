@@ -1,0 +1,39 @@
+<li
+  class="fade-me-out fade-me-in todo-item {if (isTRUE(NEW)) 'todo-item-new'} bg-gray-200
+         rounded-md p-2 my-2"
+  id="todo-item-{ID}">
+  <div class="flex items-center rounded-md p-1 my-1">
+
+    <input
+      id="todo-checkbox-{ID}"
+      name="is_checked"
+      type="checkbox"
+      class="mx-2 rounded-sm text-emerald-500 focus:ring-transparent"
+      {if (isTRUE(CHECKED)) 'checked' else ''}
+      hx-post="/toggle/{ID}"
+      hx-target="#todo-item-{ID}"
+      hx-swap="outerHTML"/>
+
+    <input
+      type="text"
+      class="flex-grow {if (isTRUE(CHECKED)) 'line-through text-gray-500' else ''}
+             rounded-sm p-1 my-1 border-gray-300 focus:border-gray-300"
+      name="title"
+      for="todo-checkbox-{ID}"
+      id="todo-title-{ID}"
+      value="{TITLE}"
+      hx-post="/edit/{ID}"
+      hx-target="#todo-item-{ID}"
+      hx-swap="outerHTML"/>
+
+    <button
+      class="mx-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4
+             rounded min-w-4 min-h-4 text-center"
+      hx-delete="/delete/{ID}"
+      hx-target="closest li"
+      hx-swap="outerHTML swap:1s">
+      <svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
+    </button>
+
+  </div>
+</li>
